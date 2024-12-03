@@ -1,6 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://w50drcix03c4"]
+[gd_scene load_steps=5 format=3 uid="uid://w50drcix03c4"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_sw4oh"]
+
+[sub_resource type="GDScript" id="GDScript_13rox"]
+script/source = "extends MeshInstance3D
+"
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_q36dh"]
 
@@ -10,6 +14,7 @@
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_sw4oh")
+script = SubResource("GDScript_13rox")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
 physics_material_override = SubResource("PhysicsMaterial_q36dh")
