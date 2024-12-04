@@ -5,6 +5,20 @@ const dir = [Vector2.RIGHT, Vector2.LEFT, Vector2.UP, Vector2.DOWN]
 var grid_size = 100
 var grid_steps = 500 #number of tiles ?
 var wall_height = 3
+var _isRoofEnable: bool = true
+
+var isRoofEnableEditable = false:
+	get:
+		return _isRoofEnable
+	set(value):
+		_isRoofEnable = value
+		set_roof_enable(value)
+
+func set_roof_enable(value):
+	if value:
+		add_roof()
+	else:
+		remove_roof()
 
 var tilesAlreadyPresent = [Vector2(0,0),Vector2(-1,0), Vector2(0,-1), Vector2(-1,-1) ]
 
@@ -38,11 +52,21 @@ func _ready():
 			tilesAlreadyPresent.append(current_pos)
 			$GridMap.set_cell_item(Vector3i(int(current_pos.x), 0, int(current_pos.y)), 0, 0)
 			# $GridMap.set_cell_item(Vector3i(int(current_pos.x), 5, int(current_pos.y)), 0, 0)
+	add_roof()
 	add_walls()
 
 func setDefaultSpawn():
 	for v in tilesAlreadyPresent:
 		$GridMap.set_cell_item(Vector3i(int(v.x), 0, int(v.y)), 0, 0)
+
+func add_roof():
+	if isRoofEnableEditable:
+		for v in tilesAlreadyPresent:
+			$GridMap.set_cell_item(Vector3i(int(v.x), 5, int(v.y)), 0, 0)
+
+func remove_roof():
+	for v in tilesAlreadyPresent:
+		$GridMap.set_cell_item(Vector3i(int(v.x), 5, int(v.y)), -1, 0)
 
 func add_walls():
 	var neighbor_offsets = [Vector2(1, 0), Vector2(-1, 0), Vector2(0, 1), Vector2(0, -1)]
