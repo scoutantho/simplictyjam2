@@ -1,18 +1,37 @@
-[gd_scene load_steps=4 format=3 uid="uid://w50drcix03c4"]
+[gd_scene load_steps=6 format=3 uid="uid://w50drcix03c4"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_sw4oh"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k4asv"]
+albedo_color = Color(0.0941176, 0.156863, 1, 1)
+metallic = 0.36
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_q36dh"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_btjne"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o3wuh"]
+albedo_color = Color(0.831373, 0.0745098, 1, 1)
+metallic_specular = 0.17
+
 [node name="Tiles" type="Node3D"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_sw4oh")
+surface_material_override/0 = SubResource("StandardMaterial3D_k4asv")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
 physics_material_override = SubResource("PhysicsMaterial_q36dh")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("BoxShape3D_btjne")
+
+[node name="wall" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_sw4oh")
+surface_material_override/0 = SubResource("StandardMaterial3D_o3wuh")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="wall"]
+physics_material_override = SubResource("PhysicsMaterial_q36dh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="wall/StaticBody3D"]
 shape = SubResource("BoxShape3D_btjne")
