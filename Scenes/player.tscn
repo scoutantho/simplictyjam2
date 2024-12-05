@@ -9,6 +9,7 @@
 
 [node name="CharacterBody3D" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.09874, 0)
+collision_mask = 2
 script = ExtResource("1_384ej")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -26,5 +27,8 @@ current = true
 
 [node name="BaguetteMagique" parent="Head" instance=ExtResource("2_8eucf")]
 transform = Transform3D(1, 0, 0, 0, 0.103782, 0.9946, 0, -0.9946, 0.103782, 0.214669, -0.452098, -0.437548)
+
+[node name="LightPos" type="Marker3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.525966, -0.812107)
 
 [node name="Player" type="Node3D" parent="."]

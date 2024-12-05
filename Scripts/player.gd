@@ -10,8 +10,12 @@ const BOB_FREQ := 2.0
 const BOB_AMP := 0.1
 var bob_timer := 0.0
 
+#light variables
+var Light = preload("res://Scenes/Light.tscn")
+
 @onready var head = $Head
 @onready var camera = $Head/Camera
+@onready var lightPos = $Head/LightPos
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -53,8 +57,26 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
+	lightThrow()
+
 func _headbob(timer: float) -> Vector3:
 	var bob_offset = Vector3(0, 0, 0)
 	bob_offset.y = abs(sin(timer * BOB_FREQ)) * BOB_AMP
 	bob_offset.x = abs(cos(timer * BOB_FREQ * 0.5)) * BOB_AMP 
 	return bob_offset
+
+func lightThrow():
+	if Input.is_action_just_released("left_click"):
+		var light_instance = Light.instantiate()
+		light_instance.position = lightPos.global_position
+		# light_instance.global_transform = lightPos.global_transform
+		# get_parent().add_child(light_instance)
+		# light_instance.lightThrow()
+		get_tree().current_scene.add_child(light_instance)
+
+
+		var force = -10
+		var upDirection = 3.5
+		var playerRotation = head.global_transform.basis.z.normalized()
+
+		light_instance.apply_central_impulse(playerRotation * force)
