@@ -2,8 +2,8 @@ extends Node3D
 
 const dir = [Vector2.RIGHT, Vector2.LEFT, Vector2.UP, Vector2.DOWN]
 
-var grid_size = 1000
-var grid_steps = 500 #number of tiles ?
+var grid_size = 2000
+var grid_steps = 1000 #number of tiles ?
 var wall_height = 3
 var _isRoofEnable: bool = true
 
@@ -25,33 +25,40 @@ var tilesAlreadyPresent = [Vector2(0,0),Vector2(-1,0), Vector2(0,-1), Vector2(-1
 func _ready():
 	setDefaultSpawn()
 	randomize()
-	var current_pos = Vector2(0,0)
-	
-	var current_dir = Vector2.RIGHT
-	var last_dir = current_dir * -1
-	
+	var current_pos = Vector2(0, 0)
+	var position_stack = [current_pos]  # Stack for backtracking
+	tilesAlreadyPresent.append(current_pos)
+
 	for i in range(grid_steps):
+		if position_stack.is_empty():
+			print("No more positions to backtrack to!")
+			break
+
+		current_pos = position_stack[-1]  # Get the last position from the stack
 		var temp_dir = dir.duplicate()
 		temp_dir.shuffle()
 		var d = temp_dir.pop_front()
+		var found_valid = false
 
-		while temp_dir.size() > 0:  # Ensure we don't exhaust all directions without valid movement
+		while temp_dir.size() > 0:
 			var new_pos = current_pos + d
-			
-		# Check grid boundaries and duplicate tiles
+
+			# Check grid boundaries and duplicate tiles
 			if abs(new_pos.x) <= grid_size and abs(new_pos.y) <= grid_size and new_pos not in tilesAlreadyPresent:
-				break  # Valid direction found
-				
-			# Try another direction
+				found_valid = true
+				break
+
 			d = temp_dir.pop_front()
-			
-		# Check if a valid direction was found
-		var new_pos = current_pos + d
-		if abs(new_pos.x) <= grid_size and abs(new_pos.y) <= grid_size and new_pos not in tilesAlreadyPresent:
-			current_pos = new_pos
-			tilesAlreadyPresent.append(current_pos)
-			$GridMap.set_cell_item(Vector3i(int(current_pos.x), 0, int(current_pos.y)), 0, 0)
-			# $GridMap.set_cell_item(Vector3i(int(current_pos.x), 5, int(current_pos.y)), 0, 0)
+
+		if found_valid:
+			var new_pos = current_pos + d
+			tilesAlreadyPresent.append(new_pos)
+			position_stack.append(new_pos)  # Push the new position to the stack
+			$GridMap.set_cell_item(Vector3i(int(new_pos.x), 0, int(new_pos.y)), 0, 0)
+		else:
+			print("No valid direction found from", current_pos)
+			position_stack.pop_back()  # Backtrack to the previous position
+
 	add_roof()
 	add_walls()
 
