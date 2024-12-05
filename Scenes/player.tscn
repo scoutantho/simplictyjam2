@@ -24,7 +24,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.672828, 0)
 [node name="Camera" type="Camera3D" parent="Head"]
 current = true
 
-[node name="Player" type="Node3D" parent="."]
+[node name="BaguetteMagique" parent="Head" instance=ExtResource("2_8eucf")]
+transform = Transform3D(1, 0, 0, 0, 0.103782, 0.9946, 0, -0.9946, 0.103782, 0.214669, -0.452098, -0.437548)
 
-[node name="Node3D" parent="." instance=ExtResource("2_8eucf")]
-transform = Transform3D(1, 0, 0, 0, 0.103782, 0.9946, 0, -0.9946, 0.103782, 0.214669, 0.22073, -0.437548)
+[node name="Player" type="Node3D" parent="."]

@@ -5,6 +5,11 @@ const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 const SENSITIVTY :=  0.001
 
+#bob variables 
+const BOB_FREQ := 2.0
+const BOB_AMP := 0.1
+var bob_timer := 0.0
+
 @onready var head = $Head
 @onready var camera = $Head/Camera
 
@@ -42,5 +47,14 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
+	#HEad bob 
+	bob_timer +=  delta * velocity.length() * float(is_on_floor()) # is on floor will give 1 or 0 so it will make the bob_timer = 0 when the player is in air
+	camera.transform.origin = _headbob(bob_timer)
+
 	move_and_slide()
 
+func _headbob(timer: float) -> Vector3:
+	var bob_offset = Vector3(0, 0, 0)
+	bob_offset.y = abs(sin(timer * BOB_FREQ)) * BOB_AMP
+	bob_offset.x = abs(cos(timer * BOB_FREQ * 0.5)) * BOB_AMP 
+	return bob_offset
