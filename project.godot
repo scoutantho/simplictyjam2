@@ -57,6 +57,11 @@ right_click={
 ]
 }
 
+[layer_names]
+
+3d_physics/layer_1="Player"
+3d_physics/layer_2="Wall"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

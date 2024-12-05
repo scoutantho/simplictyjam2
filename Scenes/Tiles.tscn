@@ -21,6 +21,7 @@ mesh = SubResource("BoxMesh_sw4oh")
 surface_material_override/0 = SubResource("StandardMaterial3D_k4asv")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+collision_layer = 2
 physics_material_override = SubResource("PhysicsMaterial_q36dh")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
@@ -31,6 +32,7 @@ mesh = SubResource("BoxMesh_sw4oh")
 surface_material_override/0 = SubResource("StandardMaterial3D_o3wuh")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="wall"]
+collision_layer = 2
 physics_material_override = SubResource("PhysicsMaterial_q36dh")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="wall/StaticBody3D"]
