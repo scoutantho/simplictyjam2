@@ -12,7 +12,7 @@ var bob_timer := 0.0
 
 #light variables
 var Light = preload("res://Scenes/Light.tscn")
-var throwingForce = -10
+var throwingForce = -20
 var lightIntesity = 10
 var canthrow = true
 
@@ -24,7 +24,7 @@ var throwTimerTime = 1.0:
 		set_throw_timerTime(value)
 	
 func set_throw_timerTime(value):
-	throwTimer.time = value
+	throwTimer.wait_time = value
 
 @onready var head = $Head
 @onready var camera = $Head/Camera
@@ -80,14 +80,16 @@ func _headbob(timer: float) -> Vector3:
 	return bob_offset
 
 func lightThrow():
-	if Input.is_action_just_released("left_click"):
+	if Input.is_action_just_released("left_click") && canthrow:
 		var light_instance = Light.instantiate()
 		light_instance.position = lightPos.global_position
 		# light_instance.global_transform = lightPos.global_transform
 		# get_parent().add_child(light_instance)
 		# light_instance.lightThrow()
+		canthrow = false
+		throwTimer.start()
 		get_tree().current_scene.add_child(light_instance)
-		
+
 		var playerRotation = head.global_transform.basis.z.normalized()
 
 		light_instance.apply_central_impulse(playerRotation * throwingForce)
