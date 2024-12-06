@@ -31,4 +31,6 @@ transform = Transform3D(1, 0, 0, 0, 0.103782, 0.9946, 0, -0.9946, 0.103782, 0.21
 [node name="LightPos" type="Marker3D" parent="Head"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.525966, -0.812107)
 
-[node name="Player" type="Node3D" parent="."]
+[node name="ThrowTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="ThrowTimer" to="." method="_on_throw_timer_timeout"]
