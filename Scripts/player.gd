@@ -12,7 +12,7 @@ var bob_timer := 0.0
 
 #light variables
 var Light = preload("res://Scenes/Light.tscn")
-var throwingForce = -20
+var throwingForce = -5
 var lightIntesity = 10
 var canthrow = true
 
