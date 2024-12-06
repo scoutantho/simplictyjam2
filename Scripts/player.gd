@@ -12,6 +12,8 @@ var bob_timer := 0.0
 
 #light variables
 var Light = preload("res://Scenes/Light.tscn")
+var throwingForce = -10
+var lightIntesity = 10
 
 @onready var head = $Head
 @onready var camera = $Head/Camera
@@ -74,9 +76,6 @@ func lightThrow():
 		# light_instance.lightThrow()
 		get_tree().current_scene.add_child(light_instance)
 
-
-		var force = -10
-		var upDirection = 3.5
 		var playerRotation = head.global_transform.basis.z.normalized()
 
-		light_instance.apply_central_impulse(playerRotation * force)
+		light_instance.apply_central_impulse(playerRotation * throwingForce)
