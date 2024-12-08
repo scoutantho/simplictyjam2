@@ -1,0 +1,45 @@
+[gd_scene load_steps=9 format=3 uid="uid://xbj4oe416h6i"]
+
+[ext_resource type="Texture2D" uid="uid://m06fay6sff8l" path="res://Assets/blueMetal/blue_metal_plate_diff_4k.png" id="1_ip6ol"]
+[ext_resource type="Texture2D" uid="uid://cxmsluk0qijjv" path="res://Assets/blueMetal/blue_metal_plate_ao_4k.png" id="2_rdhac"]
+[ext_resource type="Texture2D" uid="uid://bhkmpxfc3lpmw" path="res://Assets/blueMetal/blue_metal_plate_nor_gl_4k.png" id="3_da3hx"]
+[ext_resource type="Texture2D" uid="uid://dax5qdnnx0ish" path="res://Assets/blueMetal/blue_metal_plate_rough_4k.png" id="4_84kf7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cxha5"]
+albedo_texture = ExtResource("1_ip6ol")
+roughness_texture = ExtResource("4_84kf7")
+normal_enabled = true
+normal_texture = ExtResource("3_da3hx")
+ao_enabled = true
+ao_texture = ExtResource("2_rdhac")
+
+[sub_resource type="BoxMesh" id="BoxMesh_dnto1"]
+material = SubResource("StandardMaterial3D_cxha5")
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_q36dh"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wy3rt"]
+
+[node name="2Finish" type="MeshInstance3D"]
+mesh = SubResource("BoxMesh_dnto1")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.954946, 0)
+light_color = Color(0.0392157, 1, 1, 1)
+light_energy = 8.694
+light_size = 0.095
+omni_range = 2.762
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+collision_layer = 2
+physics_material_override = SubResource("PhysicsMaterial_q36dh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_wy3rt")
+
+[node name="StaticBody3D2" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01683, 0)
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
+shape = SubResource("BoxShape3D_wy3rt")
