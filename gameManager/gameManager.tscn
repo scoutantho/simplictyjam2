@@ -1,6 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://dq12e6a66p8wl"]
+[gd_scene load_steps=3 format=3 uid="uid://dq12e6a66p8wl"]
 
 [ext_resource type="Script" path="res://gameManager/game_manager.gd" id="1_xs5ow"]
+[ext_resource type="AudioStream" uid="uid://2r2ixds35uyt" path="res://Assets/sounds/gregori_1_M.mp3" id="2_4dmr1"]
 
 [node name="GameManager" type="Node3D"]
 script = ExtResource("1_xs5ow")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_4dmr1")
+autoplay = true
+parameters/looping = true
