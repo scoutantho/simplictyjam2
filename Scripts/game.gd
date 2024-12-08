@@ -3,8 +3,8 @@ extends Node3D
 const dir = [Vector2.RIGHT, Vector2.LEFT, Vector2.UP, Vector2.DOWN]
 const finish = preload("res://Scenes/finish.tscn")
 
-var grid_size = 2000
-var grid_steps = 6 #number of tiles ?
+var _grid_size = 2000
+var _grid_steps = 6 #number of tiles ?
 var wall_height = 4
 var _isRoofEnable: bool = false
 
@@ -26,67 +26,10 @@ var tilesAlreadyPresent = [Vector2(0,0),Vector2(-1,0), Vector2(0,-1), Vector2(-1
 func _ready():
 	setDefaultSpawn()
 	randomize()
-	var current_pos = Vector2(0, 0)
-	var position_stack = tilesAlreadyPresent + [current_pos]  # Stack for backtracking
-	tilesAlreadyPresent.append(current_pos)
+	
+	generateMaze(_grid_steps, _grid_size)
 
-	for i in range(grid_steps):
-		if position_stack.is_empty():
-			print("No more positions to backtrack to!")
-			break
-
-		current_pos = position_stack[-1]  # Get the last position from the stack
-		var temp_dir = dir.duplicate()
-		temp_dir.shuffle()
-		var possible_dirs = temp_dir.duplicate()
-		var found_valid = false
-		var first_tile = Vector2()
-		var second_tile = Vector2()
-
-		for d in temp_dir:
-			first_tile = current_pos + d
-
-			# Check grid boundaries and duplication for the first tile
-			if abs(first_tile.x) > grid_size or abs(first_tile.y) > grid_size:
-				continue
-			if first_tile in tilesAlreadyPresent:
-				continue
-			
-			if  not has_minimum_neighbors(first_tile):
-				continue
-
-			# Find a neighboring tile to place next to the first tile
-			for d2 in possible_dirs:
-				second_tile = first_tile + d2
-
-				# Check grid boundaries and duplication for the second tile
-				if abs(second_tile.x) > grid_size or abs(second_tile.y) > grid_size:
-					continue
-				if second_tile in tilesAlreadyPresent:
-					continue
-				if not has_minimum_neighbors(second_tile):
-					continue
-
-				# If both tiles pass the checks, add them
-				found_valid = true
-				break
-
-			if found_valid:
-				break
-
-		if found_valid:
-			tilesAlreadyPresent.append(first_tile)
-			tilesAlreadyPresent.append(second_tile)
-			position_stack.append(first_tile)
-			position_stack.append(second_tile)
-
-			$GridMap.set_cell_item(Vector3i(int(first_tile.x), 0, int(first_tile.y)), 0, 0)
-			$GridMap.set_cell_item(Vector3i(int(second_tile.x), 0, int(second_tile.y)), 0, 0)
-		
-		else:
-			print("No valid direction found from", current_pos)
-			position_stack.pop_back()  # Backtrack to the previous position
-
+	
 	# Add roof and walls after generating the grid
 	add_roof()
 	add_walls()
@@ -199,3 +142,65 @@ func add_finish():
 		_finish.position = Vector3(finish_tile.x + 0.5, 0.5, finish_tile.y + 0.5)
 	else:
 		print("No tiles available for placing the finish line!")
+
+func generateMaze(grid_steps: int = 6, grid_size: int = 2000):
+	var current_pos = Vector2(0, 0)
+	var position_stack = tilesAlreadyPresent + [current_pos]  # Stack for backtracking
+	tilesAlreadyPresent.append(current_pos)
+
+	for i in range(grid_steps):
+		if position_stack.is_empty():
+			print("No more positions to backtrack to!")
+			break
+
+		current_pos = position_stack[-1]  # Get the last position from the stack
+		var temp_dir = dir.duplicate()
+		temp_dir.shuffle()
+		var possible_dirs = temp_dir.duplicate()
+		var found_valid = false
+		var first_tile = Vector2()
+		var second_tile = Vector2()
+
+		for d in temp_dir:
+			first_tile = current_pos + d
+
+			# Check grid boundaries and duplication for the first tile
+			if abs(first_tile.x) > grid_size or abs(first_tile.y) > grid_size:
+				continue
+			if first_tile in tilesAlreadyPresent:
+				continue
+			
+			if  not has_minimum_neighbors(first_tile):
+				continue
+
+			# Find a neighboring tile to place next to the first tile
+			for d2 in possible_dirs:
+				second_tile = first_tile + d2
+
+				# Check grid boundaries and duplication for the second tile
+				if abs(second_tile.x) > grid_size or abs(second_tile.y) > grid_size:
+					continue
+				if second_tile in tilesAlreadyPresent:
+					continue
+				if not has_minimum_neighbors(second_tile):
+					continue
+
+				# If both tiles pass the checks, add them
+				found_valid = true
+				break
+
+			if found_valid:
+				break
+
+		if found_valid:
+			tilesAlreadyPresent.append(first_tile)
+			tilesAlreadyPresent.append(second_tile)
+			position_stack.append(first_tile)
+			position_stack.append(second_tile)
+
+			$GridMap.set_cell_item(Vector3i(int(first_tile.x), 0, int(first_tile.y)), 0, 0)
+			$GridMap.set_cell_item(Vector3i(int(second_tile.x), 0, int(second_tile.y)), 0, 0)
+		
+		else:
+			print("No valid direction found from", current_pos)
+			position_stack.pop_back()  # Backtrack to the previous position

@@ -12,6 +12,6 @@ func _process(delta: float) -> void:
 
 
 func _on_static_body_3d_2_body_entered(body:Node3D) -> void:
-	# if(body.is_in_group("Player")):
-	print("you win") 
+	if(body.is_in_group("Player")):
+		print("you win") 
 	pass # Replace with function body.
