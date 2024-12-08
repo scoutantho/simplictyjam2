@@ -92,7 +92,7 @@ func lightThrow():
 
 		var playerRotation = head.global_transform.basis.z.normalized()
 
-		light_instance.apply_central_impulse(playerRotation * throwingForce)
+		light_instance.velocity = playerRotation * throwingForce
 
 
 func _on_throw_timer_timeout() -> void:

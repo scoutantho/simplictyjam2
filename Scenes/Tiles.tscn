@@ -43,7 +43,6 @@ material = SubResource("StandardMaterial3D_80hws")
 [node name="Tiles" type="Node3D"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-visible = false
 mesh = SubResource("BoxMesh_sw4oh")
 surface_material_override/0 = SubResource("StandardMaterial3D_k4asv")
 
@@ -77,6 +76,7 @@ physics_material_override = SubResource("PhysicsMaterial_q36dh")
 shape = SubResource("BoxShape3D_btjne")
 
 [node name="wall3" type="MeshInstance3D" parent="."]
+visible = false
 mesh = SubResource("BoxMesh_f4sdb")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="wall3"]
@@ -87,6 +87,7 @@ physics_material_override = SubResource("PhysicsMaterial_q36dh")
 shape = SubResource("BoxShape3D_btjne")
 
 [node name="wall4" type="MeshInstance3D" parent="."]
+visible = false
 mesh = SubResource("BoxMesh_s5aro")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="wall4"]
