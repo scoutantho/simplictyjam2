@@ -3,8 +3,8 @@ extends Node3D
 const dir = [Vector2.RIGHT, Vector2.LEFT, Vector2.UP, Vector2.DOWN]
 const finish = preload("res://Scenes/finish.tscn")
 
-var _grid_size = 2000
-var _grid_steps = 20 #number of tiles ?
+@export var _grid_size = 2000
+@export var _grid_steps = 20 #number of tiles ?
 var wall_height = 4
 var _isRoofEnable: bool = false
 
@@ -107,7 +107,7 @@ func add_walls():
 				for height in range(wall_height):  # Build a 3-tall wall				
 					# random between 1 and 4 
 					# var random_value = randi() % 4 + 1
-					$GridMap.set_cell_item(Vector3i(int(neighbor_pos.x), height, int(neighbor_pos.y)), 2, 0)  # Replace '1' with wall ID
+					$GridMap.set_cell_item(Vector3i(int(neighbor_pos.x), height, int(neighbor_pos.y)), 1, 0)  # Replace '1' with wall ID
 
 func add_finish():
 	#select a random tile from the furthest tiles from the start (0,0) and add the finish line	
