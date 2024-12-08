@@ -4,7 +4,7 @@ const dir = [Vector2.RIGHT, Vector2.LEFT, Vector2.UP, Vector2.DOWN]
 
 var grid_size = 2000
 var grid_steps = 100 #number of tiles ?
-var wall_height = 3
+var wall_height = 4
 var _isRoofEnable: bool = false
 
 var isRoofEnableEditable = false:
@@ -37,26 +37,51 @@ func _ready():
 		current_pos = position_stack[-1]  # Get the last position from the stack
 		var temp_dir = dir.duplicate()
 		temp_dir.shuffle()
-		var d = temp_dir.pop_front()
+		var possible_dirs = temp_dir.duplicate()
 		var found_valid = false
+		var first_tile = Vector2()
+		var second_tile = Vector2()
 
-		while temp_dir.size() > 0:
-			var new_pos = current_pos + d
+		for d in temp_dir:
+			first_tile = current_pos + d
 
-			# Check grid boundaries, duplicate tiles, and minimum neighbor condition
-			if abs(new_pos.x) <= grid_size and abs(new_pos.y) <= grid_size and new_pos not in tilesAlreadyPresent:
-				if tilesAlreadyPresent.size() < 6 or has_minimum_neighbors(new_pos):
-					found_valid = true
-					break
+			# Check grid boundaries and duplication for the first tile
+			if abs(first_tile.x) > grid_size or abs(first_tile.y) > grid_size:
+				continue
+			if first_tile in tilesAlreadyPresent:
+				continue
+			
+			if  not has_minimum_neighbors(first_tile):
+				continue
 
-			d = temp_dir.pop_front()
+			# Find a neighboring tile to place next to the first tile
+			for d2 in possible_dirs:
+				second_tile = first_tile + d2
+
+				# Check grid boundaries and duplication for the second tile
+				if abs(second_tile.x) > grid_size or abs(second_tile.y) > grid_size:
+					continue
+				if second_tile in tilesAlreadyPresent:
+					continue
+				if not has_minimum_neighbors(second_tile):
+					continue
+
+				# If both tiles pass the checks, add them
+				found_valid = true
+				break
+
+			if found_valid:
+				break
 
 		if found_valid:
-			var new_pos = current_pos + d
-			tilesAlreadyPresent.append(new_pos)
-			position_stack.append(new_pos)  # Push the new position to the stack
+			tilesAlreadyPresent.append(first_tile)
+			tilesAlreadyPresent.append(second_tile)
+			position_stack.append(first_tile)
+			position_stack.append(second_tile)
 
-			$GridMap.set_cell_item(Vector3i(int(new_pos.x), 0, int(new_pos.y)), 0, 0)
+			$GridMap.set_cell_item(Vector3i(int(first_tile.x), 0, int(first_tile.y)), 0, 0)
+			$GridMap.set_cell_item(Vector3i(int(second_tile.x), 0, int(second_tile.y)), 0, 0)
+		
 		else:
 			print("No valid direction found from", current_pos)
 			position_stack.pop_back()  # Backtrack to the previous position
