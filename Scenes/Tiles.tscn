@@ -1,28 +1,38 @@
-[gd_scene load_steps=21 format=3 uid="uid://w50drcix03c4"]
+[gd_scene load_steps=19 format=3 uid="uid://w50drcix03c4"]
 
-[ext_resource type="Material" uid="uid://cqrvyi4myfpuc" path="res://Materials/Wall1.tres" id="1_cpw7t"]
+[ext_resource type="Texture2D" uid="uid://dqo8kf7aqil1d" path="res://Assets/dark-worn-stone-ue/dark-worn-stonework_albedo.png" id="1_w3iwl"]
 [ext_resource type="Material" uid="uid://cld0sf4gpb71m" path="res://Materials/Wall2.tres" id="2_0qgx3"]
-[ext_resource type="Texture2D" uid="uid://qq32i5d8a6x8" path="res://Assets/concrete_pavement/concrete_pavement_diff_4k.jpg" id="2_o0ido"]
+[ext_resource type="Texture2D" uid="uid://bvligc5ojj0km" path="res://Assets/dark-worn-stone-ue/dark-worn-stonework_ao.png" id="2_pmvae"]
 [ext_resource type="Material" uid="uid://dwj3xfe4ovm1t" path="res://Materials/brickWall.tres" id="3_75s8i"]
-[ext_resource type="Texture2D" uid="uid://djdwfp6f58i7f" path="res://Assets/concrete_pavement/concrete_pavement_ao_4k.png" id="3_cpn67"]
-[ext_resource type="Texture2D" uid="uid://c0l3dhttr2pa7" path="res://Assets/rock-slab-wall1-ue/rock-slab-wall_albedo.png" id="4_5wf7a"]
-[ext_resource type="Texture2D" uid="uid://bpj3mxk0f8nml" path="res://Assets/concrete_pavement/concrete_pavement_nor_gl_4k.png" id="4_aqqtw"]
-[ext_resource type="Texture2D" uid="uid://b1237d3sr6ud" path="res://Assets/rock-slab-wall1-ue/rock-slab-wall_ao.png" id="5_24gka"]
-[ext_resource type="Texture2D" uid="uid://dpj6ft3es1xxr" path="res://Assets/concrete_pavement/concrete_pavement_rough_4k.png" id="5_lqnrc"]
-[ext_resource type="Texture2D" uid="uid://b0cevkuj4rfvx" path="res://Assets/rock-slab-wall1-ue/rock-slab-wall_metallic.png" id="6_kovm3"]
-[ext_resource type="Texture2D" uid="uid://b8oybfbo34b5c" path="res://Assets/rock-slab-wall1-ue/rock-slab-wall_normal-dx.png" id="7_akvmt"]
-[ext_resource type="Texture2D" uid="uid://cnhh8vamref2a" path="res://Assets/rock-slab-wall1-ue/rock-slab-wall_roughness.png" id="8_cnji5"]
+[ext_resource type="Texture2D" uid="uid://dbptktpdyccs" path="res://Assets/dark-worn-stone-ue/dark-worn-stonework_metallic.png" id="3_nk28l"]
+[ext_resource type="Texture2D" uid="uid://bw6s7hkwpxbw3" path="res://Assets/dark-worn-stone-ue/dark-worn-stonework_normal-dx.png" id="4_beum8"]
+[ext_resource type="Texture2D" uid="uid://cpqkxj6x08jof" path="res://Assets/dark-worn-stone-ue/dark-worn-stonework_roughness.png" id="5_jsq4b"]
+[ext_resource type="Texture2D" uid="uid://hsgtkv28v21y" path="res://Assets/concrete_pavement/concrete_pavement_diff_1k.png" id="6_o44cj"]
+[ext_resource type="Texture2D" uid="uid://bb862qp2sqgxw" path="res://Assets/concrete_pavement/concrete_pavement_ao_1k.png" id="7_pm2ib"]
+[ext_resource type="Texture2D" uid="uid://6vh7vqj2ueru" path="res://Assets/concrete_pavement/concrete_pavement_nor_gl_1k.png" id="8_62ni4"]
+[ext_resource type="Texture2D" uid="uid://cbuc41ef5oh83" path="res://Assets/concrete_pavement/concrete_pavement_rough_1k.png" id="9_f4ajm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g2bdy"]
+albedo_texture = ExtResource("1_w3iwl")
+metallic = 1.0
+metallic_texture = ExtResource("3_nk28l")
+roughness_texture = ExtResource("5_jsq4b")
+normal_enabled = true
+normal_texture = ExtResource("4_beum8")
+ao_enabled = true
+ao_texture = ExtResource("2_pmvae")
+uv1_scale = Vector3(2, 2, 2)
 
 [sub_resource type="BoxMesh" id="BoxMesh_sw4oh"]
-material = ExtResource("1_cpw7t")
+material = SubResource("StandardMaterial3D_g2bdy")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hmxic"]
-albedo_texture = ExtResource("2_o0ido")
-roughness_texture = ExtResource("5_lqnrc")
+albedo_texture = ExtResource("6_o44cj")
+roughness_texture = ExtResource("9_f4ajm")
 normal_enabled = true
-normal_texture = ExtResource("4_aqqtw")
+normal_texture = ExtResource("8_62ni4")
 ao_enabled = true
-ao_texture = ExtResource("3_cpn67")
+ao_texture = ExtResource("7_pm2ib")
 uv1_scale = Vector3(3, 3, 3)
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_q36dh"]
@@ -34,20 +44,6 @@ material = ExtResource("2_0qgx3")
 
 [sub_resource type="BoxMesh" id="BoxMesh_f4sdb"]
 material = ExtResource("3_75s8i")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_80hws"]
-albedo_texture = ExtResource("4_5wf7a")
-metallic = 1.0
-metallic_texture = ExtResource("6_kovm3")
-roughness_texture = ExtResource("8_cnji5")
-normal_enabled = true
-normal_texture = ExtResource("7_akvmt")
-ao_enabled = true
-ao_texture = ExtResource("5_24gka")
-uv1_scale = Vector3(6, 6, 6)
-
-[sub_resource type="BoxMesh" id="BoxMesh_s5aro"]
-material = SubResource("StandardMaterial3D_80hws")
 
 [node name="Tiles" type="Node3D"]
 
@@ -63,19 +59,7 @@ physics_material_override = SubResource("PhysicsMaterial_q36dh")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="0Start/StaticBody3D"]
 shape = SubResource("BoxShape3D_f0t2f")
 
-[node name="1wall" type="MeshInstance3D" parent="."]
-visible = false
-mesh = SubResource("BoxMesh_sw4oh")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="1wall"]
-collision_layer = 2
-physics_material_override = SubResource("PhysicsMaterial_q36dh")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="1wall/StaticBody3D"]
-shape = SubResource("BoxShape3D_f0t2f")
-
 [node name="1wall2" type="MeshInstance3D" parent="."]
-visible = false
 mesh = SubResource("BoxMesh_ntltc")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="1wall2"]
@@ -94,15 +78,4 @@ collision_layer = 2
 physics_material_override = SubResource("PhysicsMaterial_q36dh")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="1wall3/StaticBody3D"]
-shape = SubResource("BoxShape3D_f0t2f")
-
-[node name="1wall4" type="MeshInstance3D" parent="."]
-visible = false
-mesh = SubResource("BoxMesh_s5aro")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="1wall4"]
-collision_layer = 2
-physics_material_override = SubResource("PhysicsMaterial_q36dh")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="1wall4/StaticBody3D"]
 shape = SubResource("BoxShape3D_f0t2f")

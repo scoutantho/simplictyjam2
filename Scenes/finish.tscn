@@ -1,18 +1,18 @@
 [gd_scene load_steps=10 format=3 uid="uid://xbj4oe416h6i"]
 
-[ext_resource type="Texture2D" uid="uid://m06fay6sff8l" path="res://Assets/blueMetal/blue_metal_plate_diff_4k.png" id="1_ip6ol"]
-[ext_resource type="Texture2D" uid="uid://cxmsluk0qijjv" path="res://Assets/blueMetal/blue_metal_plate_ao_4k.png" id="2_rdhac"]
-[ext_resource type="Texture2D" uid="uid://bhkmpxfc3lpmw" path="res://Assets/blueMetal/blue_metal_plate_nor_gl_4k.png" id="3_da3hx"]
-[ext_resource type="Texture2D" uid="uid://dax5qdnnx0ish" path="res://Assets/blueMetal/blue_metal_plate_rough_4k.png" id="4_84kf7"]
+[ext_resource type="Texture2D" uid="uid://sptd4hl41jn1" path="res://Assets/blueMetal/blue_metal_plate_diff_1k.png" id="1_d83hf"]
+[ext_resource type="Texture2D" uid="uid://hiqwrutxc6rn" path="res://Assets/blueMetal/blue_metal_plate_ao_1k.png" id="2_oaon7"]
+[ext_resource type="Texture2D" uid="uid://ce04vc8m5yp4i" path="res://Assets/blueMetal/blue_metal_plate_nor_gl_1k.png" id="3_43v36"]
+[ext_resource type="Texture2D" uid="uid://duxumlwu3j1md" path="res://Assets/blueMetal/blue_metal_plate_rough_1k.png" id="4_sb6pt"]
 [ext_resource type="Script" path="res://Scripts/finish.gd" id="5_d53ho"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cxha5"]
-albedo_texture = ExtResource("1_ip6ol")
-roughness_texture = ExtResource("4_84kf7")
+albedo_texture = ExtResource("1_d83hf")
+roughness_texture = ExtResource("4_sb6pt")
 normal_enabled = true
-normal_texture = ExtResource("3_da3hx")
+normal_texture = ExtResource("3_43v36")
 ao_enabled = true
-ao_texture = ExtResource("2_rdhac")
+ao_texture = ExtResource("2_oaon7")
 
 [sub_resource type="BoxMesh" id="BoxMesh_dnto1"]
 material = SubResource("StandardMaterial3D_cxha5")
