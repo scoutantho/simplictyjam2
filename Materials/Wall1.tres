@@ -1,0 +1,18 @@
+[gd_resource type="StandardMaterial3D" load_steps=6 format=3 uid="uid://cqrvyi4myfpuc"]
+
+[ext_resource type="Texture2D" uid="uid://dqo8kf7aqil1d" path="res://Assets/dark-worn-stone-ue/dark-worn-stonework_albedo.png" id="1_7nc2q"]
+[ext_resource type="Texture2D" uid="uid://dbptktpdyccs" path="res://Assets/dark-worn-stone-ue/dark-worn-stonework_metallic.png" id="2_lvjnb"]
+[ext_resource type="Texture2D" uid="uid://bvligc5ojj0km" path="res://Assets/dark-worn-stone-ue/dark-worn-stonework_ao.png" id="2_oy7kt"]
+[ext_resource type="Texture2D" uid="uid://bw6s7hkwpxbw3" path="res://Assets/dark-worn-stone-ue/dark-worn-stonework_normal-dx.png" id="3_8rjkt"]
+[ext_resource type="Texture2D" uid="uid://cpqkxj6x08jof" path="res://Assets/dark-worn-stone-ue/dark-worn-stonework_roughness.png" id="4_utrce"]
+
+[resource]
+albedo_texture = ExtResource("1_7nc2q")
+metallic = 1.0
+metallic_texture = ExtResource("2_lvjnb")
+roughness_texture = ExtResource("4_utrce")
+normal_enabled = true
+normal_texture = ExtResource("3_8rjkt")
+ao_enabled = true
+ao_texture = ExtResource("2_oy7kt")
+uv1_scale = Vector3(2, 2, 2)

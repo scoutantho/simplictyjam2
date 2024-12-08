@@ -28,7 +28,7 @@ func set_throw_timerTime(value):
 
 @onready var head = $Head
 @onready var camera = $Head/Camera
-@onready var lightPos = $Head/LightPos
+@onready var lightPos = $Head/BaguetteMagique/LightPos
 @onready var throwTimer = $ThrowTimer
 
 func _ready() -> void:

@@ -1,0 +1,15 @@
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://dwj3xfe4ovm1t"]
+
+[ext_resource type="Texture2D" uid="uid://bpmsrgxqmdel0" path="res://Assets/medieval_red_brick/medieval_red_brick_diff_4k.jpg" id="1_lgkom"]
+[ext_resource type="Texture2D" uid="uid://c4ungv0li6k80" path="res://Assets/medieval_red_brick/medieval_red_brick_ao_4k.jpg" id="2_g4mpy"]
+[ext_resource type="Texture2D" uid="uid://cm08ufwrvtfu8" path="res://Assets/medieval_red_brick/medieval_red_brick_nor_gl_4k.png" id="3_ef8nn"]
+[ext_resource type="Texture2D" uid="uid://bcke7jj3s7jjt" path="res://Assets/medieval_red_brick/medieval_red_brick_rough_4k.png" id="4_831vi"]
+
+[resource]
+albedo_texture = ExtResource("1_lgkom")
+roughness_texture = ExtResource("4_831vi")
+normal_enabled = true
+normal_texture = ExtResource("3_ef8nn")
+ao_enabled = true
+ao_texture = ExtResource("2_g4mpy")
+uv1_scale = Vector3(2, 2, 2)
