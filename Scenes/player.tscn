@@ -29,7 +29,6 @@ current = true
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.274331, -0.39628, -0.693077)
 
 [node name="LightPos" type="Marker3D" parent="Head/BaguetteMagique"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="ThrowTimer" type="Timer" parent="."]
 

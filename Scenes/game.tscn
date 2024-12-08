@@ -2,14 +2,13 @@
 
 [ext_resource type="PackedScene" uid="uid://di1t6u038ybnr" path="res://Scenes/player.tscn" id="1_37s63"]
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_lwhkp"]
-[ext_resource type="MeshLibrary" uid="uid://dh5is0345r5il" path="res://MeshLibraries/TileMesh.tres" id="2_8mkj7"]
+[ext_resource type="MeshLibrary" uid="uid://c6cgyrgbqq05h" path="res://MeshLibraries/TileMesh.tres" id="2_8mkj7"]
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_lwhkp")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
-visible = false
 light_energy = 2.099
 shadow_enabled = true
 

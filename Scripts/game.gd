@@ -3,8 +3,8 @@ extends Node3D
 const dir = [Vector2.RIGHT, Vector2.LEFT, Vector2.UP, Vector2.DOWN]
 const finish = preload("res://Scenes/finish.tscn")
 
-@export var _grid_size = 2000
-@export var _grid_steps = 20 #number of tiles ?
+@export var _grid_size := 2000
+@export var _grid_steps := 6 #number of tiles ?
 var wall_height = 4
 var _isRoofEnable: bool = false
 
@@ -26,7 +26,9 @@ var tilesAlreadyPresent = [Vector2(0,0),Vector2(-1,0), Vector2(0,-1), Vector2(-1
 func _ready():
 	setDefaultSpawn()
 	randomize()
-	
+	_grid_size = GameManager.actualGridsize
+	_grid_steps = GameManager.actualGridSteps
+
 	generateMaze(_grid_steps, _grid_size)
 
 	add_starting_lights($Player)
