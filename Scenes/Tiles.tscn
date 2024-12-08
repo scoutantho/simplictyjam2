@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://w50drcix03c4"]
+[gd_scene load_steps=21 format=3 uid="uid://w50drcix03c4"]
 
 [ext_resource type="Material" uid="uid://cqrvyi4myfpuc" path="res://Materials/Wall1.tres" id="1_cpw7t"]
 [ext_resource type="Material" uid="uid://cld0sf4gpb71m" path="res://Materials/Wall2.tres" id="2_0qgx3"]
@@ -12,7 +12,6 @@
 [ext_resource type="Texture2D" uid="uid://b0cevkuj4rfvx" path="res://Assets/rock-slab-wall1-ue/rock-slab-wall_metallic.png" id="6_kovm3"]
 [ext_resource type="Texture2D" uid="uid://b8oybfbo34b5c" path="res://Assets/rock-slab-wall1-ue/rock-slab-wall_normal-dx.png" id="7_akvmt"]
 [ext_resource type="Texture2D" uid="uid://cnhh8vamref2a" path="res://Assets/rock-slab-wall1-ue/rock-slab-wall_roughness.png" id="8_cnji5"]
-[ext_resource type="PackedScene" uid="uid://xbj4oe416h6i" path="res://Scenes/2_finish.tscn" id="13_e1chq"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_sw4oh"]
 material = ExtResource("1_cpw7t")
@@ -53,6 +52,7 @@ material = SubResource("StandardMaterial3D_80hws")
 [node name="Tiles" type="Node3D"]
 
 [node name="0Start" type="MeshInstance3D" parent="."]
+visible = false
 mesh = SubResource("BoxMesh_sw4oh")
 surface_material_override/0 = SubResource("StandardMaterial3D_hmxic")
 
@@ -106,5 +106,3 @@ physics_material_override = SubResource("PhysicsMaterial_q36dh")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="1wall4/StaticBody3D"]
 shape = SubResource("BoxShape3D_f0t2f")
-
-[node name="2Finish" parent="." instance=ExtResource("13_e1chq")]

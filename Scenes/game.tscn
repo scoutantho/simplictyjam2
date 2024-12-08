@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://di1t6u038ybnr" path="res://Scenes/player.tscn" id="1_37s63"]
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_lwhkp"]
-[ext_resource type="MeshLibrary" uid="uid://6krnm1h2gna0" path="res://MeshLibraries/TileMesh.tres" id="2_8mkj7"]
+[ext_resource type="MeshLibrary" uid="uid://dh5is0345r5il" path="res://MeshLibraries/TileMesh.tres" id="2_8mkj7"]
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_lwhkp")

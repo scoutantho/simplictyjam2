@@ -1,9 +1,10 @@
 extends Node3D
 
 const dir = [Vector2.RIGHT, Vector2.LEFT, Vector2.UP, Vector2.DOWN]
+const finish = preload("res://Scenes/finish.tscn")
 
 var grid_size = 2000
-var grid_steps = 100 #number of tiles ?
+var grid_steps = 6 #number of tiles ?
 var wall_height = 4
 var _isRoofEnable: bool = false
 
@@ -190,6 +191,11 @@ func add_finish():
 		print("Finish line placed at:", finish_tile)
 
 		# Add the finish line (use your preferred method to represent it)
-		$GridMap.set_cell_item(Vector3i(int(finish_tile.x), 0, int(finish_tile.y)), 5, 0)
+		$GridMap.set_cell_item(Vector3i(int(finish_tile.x), 0, int(finish_tile.y)), -1, 0)
+
+		var _finish = finish.instantiate()
+		add_child(_finish)
+		
+		_finish.position = Vector3(finish_tile.x + 0.5, 0.5, finish_tile.y + 0.5)
 	else:
 		print("No tiles available for placing the finish line!")
