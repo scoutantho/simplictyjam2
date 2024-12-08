@@ -136,5 +136,5 @@ func add_walls():
 			if neighbor_pos not in tilesAlreadyPresent:  # If the position is empty
 				for height in range(wall_height):  # Build a 3-tall wall				
 					# random between 1 and 4 
-					var random_value = randi() % 4 + 1
-					$GridMap.set_cell_item(Vector3i(int(neighbor_pos.x), height, int(neighbor_pos.y)), random_value, 0)  # Replace '1' with wall ID
+					# var random_value = randi() % 4 + 1
+					$GridMap.set_cell_item(Vector3i(int(neighbor_pos.x), height, int(neighbor_pos.y)), 2, 0)  # Replace '1' with wall ID
