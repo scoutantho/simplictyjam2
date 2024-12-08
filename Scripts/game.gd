@@ -89,6 +89,7 @@ func _ready():
 	# Add roof and walls after generating the grid
 	add_roof()
 	add_walls()
+	add_finish()
 
 func has_minimum_neighbors(pos: Vector2) -> bool:
 	var orthogonal_offsets = [Vector2(1, 0), Vector2(-1, 0), Vector2(0, 1), Vector2(0, -1)]
@@ -163,3 +164,32 @@ func add_walls():
 					# random between 1 and 4 
 					# var random_value = randi() % 4 + 1
 					$GridMap.set_cell_item(Vector3i(int(neighbor_pos.x), height, int(neighbor_pos.y)), 2, 0)  # Replace '1' with wall ID
+
+func add_finish():
+	#select a random tile from the furthest tiles from the start (0,0) and add the finish line	
+	# Start position
+	var start_pos = Vector2(0, 0)
+
+	# Calculate distances of all tiles from the start
+	var max_distance = 0
+	var furthest_tiles = []
+
+	for tile in tilesAlreadyPresent:
+		var distance = start_pos.distance_to(tile)
+
+		# Update max distance and furthest tiles
+		if distance > max_distance:
+			max_distance = distance
+			furthest_tiles = [tile]  # Start a new list with this tile
+		elif distance == max_distance:
+			furthest_tiles.append(tile)  # Add to the list of furthest tiles
+
+	# Select a random tile from the furthest tiles
+	if furthest_tiles.size() > 0:
+		var finish_tile = furthest_tiles[randi() % furthest_tiles.size()]
+		print("Finish line placed at:", finish_tile)
+
+		# Add the finish line (use your preferred method to represent it)
+		$GridMap.set_cell_item(Vector3i(int(finish_tile.x), 0, int(finish_tile.y)), 5, 0)
+	else:
+		print("No tiles available for placing the finish line!")
