@@ -55,6 +55,7 @@ func _ready():
 			var new_pos = current_pos + d
 			tilesAlreadyPresent.append(new_pos)
 			position_stack.append(new_pos)  # Push the new position to the stack
+
 			$GridMap.set_cell_item(Vector3i(int(new_pos.x), 0, int(new_pos.y)), 0, 0)
 		else:
 			print("No valid direction found from", current_pos)
@@ -133,5 +134,7 @@ func add_walls():
 		for offset in neighbor_offsets:
 			var neighbor_pos = tile + offset
 			if neighbor_pos not in tilesAlreadyPresent:  # If the position is empty
-				for height in range(wall_height):  # Build a 3-tall wall
-					$GridMap.set_cell_item(Vector3i(int(neighbor_pos.x), height, int(neighbor_pos.y)), 1, 0)  # Replace '1' with wall ID
+				for height in range(wall_height):  # Build a 3-tall wall				
+					# random between 1 and 4 
+					var random_value = randi() % 4 + 1
+					$GridMap.set_cell_item(Vector3i(int(neighbor_pos.x), height, int(neighbor_pos.y)), random_value, 0)  # Replace '1' with wall ID
