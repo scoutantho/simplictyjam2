@@ -4,7 +4,7 @@ const dir = [Vector2.RIGHT, Vector2.LEFT, Vector2.UP, Vector2.DOWN]
 const finish = preload("res://Scenes/finish.tscn")
 
 var _grid_size = 2000
-var _grid_steps = 6 #number of tiles ?
+var _grid_steps = 20 #number of tiles ?
 var wall_height = 4
 var _isRoofEnable: bool = false
 
@@ -29,7 +29,7 @@ func _ready():
 	
 	generateMaze(_grid_steps, _grid_size)
 
-	
+	add_starting_lights($Player)
 	# Add roof and walls after generating the grid
 	add_roof()
 	add_walls()
@@ -204,3 +204,19 @@ func generateMaze(grid_steps: int = 6, grid_size: int = 2000):
 		else:
 			print("No valid direction found from", current_pos)
 			position_stack.pop_back()  # Backtrack to the previous position
+
+func add_starting_lights(player: Node):
+	# Instantiate a new OmniLight (adjust according to your Godot version)
+	var starting_light = OmniLight3D.new()  # Use OmniLight for Godot 4.x, or OmniLight for Godot 3.x
+	add_child(starting_light)  # Add the light to the scene
+
+	# Set the color to a warm white (slightly yellowish)
+	starting_light.light_color = Color(1.0, 0.9, 0.7)  # Warm white color (RGB)
+
+	# Position the light at the player's spawn location
+	starting_light.global_transform.origin = player.global_transform.origin + Vector3(0, 2, 0)  # Adjust the height as needed
+
+	# Optionally, set the light to be static if it doesn't move (for performance reasons)
+	starting_light.light_bake_mode = Light3D.BAKE_STATIC  # For static lighting, use MODE_BAKED (optional, adjust based on need)
+	
+	print("Starting light added at player spawn position:", starting_light.global_transform.origin)

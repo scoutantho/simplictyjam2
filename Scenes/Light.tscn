@@ -22,6 +22,7 @@ gi_lightmap_scale = 3
 mesh = SubResource("SphereMesh_gxruw")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_color = Color(1, 0.9, 0.7, 1)
 light_energy = 3.0
 shadow_enabled = true
 omni_range = 3.92
