@@ -30,6 +30,7 @@ func set_throw_timerTime(value):
 @onready var camera = $Head/Camera
 @onready var lightPos = $Head/BaguetteMagique/LightPos
 @onready var throwTimer = $ThrowTimer
+@onready var footwork = $footwork
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -59,9 +60,11 @@ func _physics_process(delta: float) -> void:
 	var input_dir := Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	var direction: Vector3 = (head.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
+		handleWalkingSound()
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
 	else:
+		handleWalkingSound(true)
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
@@ -97,4 +100,12 @@ func lightThrow():
 
 func _on_throw_timer_timeout() -> void:
 	canthrow = true
+	pass # Replace with function body.
+
+func handleWalkingSound(shouldStop = false):
+	if shouldStop:
+		footwork.stop()
+	else:
+		if not footwork.playing:
+			footwork.play()
 	pass # Replace with function body.
