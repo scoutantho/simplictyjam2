@@ -28,7 +28,8 @@ func set_throw_timerTime(value):
 
 @onready var head = $Head
 @onready var camera = $Head/Camera
-@onready var lightPos = $Head/BaguetteMagique/LightPos
+@onready var baguette = $Head/Camera/BaguetteMagique
+@onready var lightPos = %LightPos
 @onready var throwTimer = $ThrowTimer
 @onready var footwork = $footwork
 @onready var woosh = $woosh
@@ -47,7 +48,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		elif Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-
+			
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
@@ -103,19 +104,22 @@ func handleWalkingSound(shouldStop = false):
 			footwork.play()
 	pass # Replace with function body.
 
-func lightSpawn():
+func lightSpawn():	
 	var light_instance = Light.instantiate()
+	# Set the light's position to the lightPos node's position
 	light_instance.position = lightPos.global_position
-	# light_instance.global_transform = lightPos.global_transform
-	# get_parent().add_child(light_instance)
-	# light_instance.lightThrow()
-	
-	throwTimer.start()
+
+	# Align the light's direction with the camera's direction (or wand/head if needed)
+	var throw_direction = camera.global_transform.basis.z.normalized()
+
+	# Apply the velocity for the throw
+	light_instance.velocity = throw_direction * throwingForce
+
+	# Add the light to the current scene
 	get_tree().current_scene.add_child(light_instance)
 
-	var playerRotation = head.global_transform.basis.z.normalized()
-
-	light_instance.velocity = playerRotation * throwingForce
+	# Start the timer for cooldown
+	throwTimer.start()
 
 func _on_sound_timer_timeout() -> void:
 	lightSpawn()
