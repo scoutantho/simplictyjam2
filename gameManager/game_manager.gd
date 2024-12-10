@@ -11,8 +11,8 @@ var actualLevel := 1
 
 func newGame():
 	GameManager.actualLevel += 1
-	GameManager.actualGridsize += 2000
-	GameManager.actualGridSteps += 50
+	GameManager.actualGridsize += 1000
+	GameManager.actualGridSteps += 20
 
 	# Load the new scene
 	var new_scene = load("res://Scenes/game.tscn") as PackedScene
