@@ -32,6 +32,11 @@ func _on_static_body_3d_2_body_entered(body:Node3D) -> void:
 		current_scene.queue_free()
 		print("Scene Tree After Switch:")	
 		get_tree().root.print_tree()
+		handleGameTheme()
 		# else:
 			# print("No more levels")
 	pass # Replace with function body.
+
+func handleGameTheme():
+	if GameManager.gameTheme != null and  (GameManager.gameTheme as AudioStreamPlayer).playing == false:
+		(GameManager.gameTheme as AudioStreamPlayer).play()

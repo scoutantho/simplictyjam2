@@ -6,7 +6,6 @@
 [node name="GameManager" type="Node3D"]
 script = ExtResource("1_xs5ow")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="gametheme" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_4dmr1")
-autoplay = true
 parameters/looping = true
