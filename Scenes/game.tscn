@@ -1,15 +1,31 @@
-[gd_scene load_steps=4 format=3 uid="uid://cwfbfpev2hkh7"]
+[gd_scene load_steps=8 format=3 uid="uid://cwfbfpev2hkh7"]
 
 [ext_resource type="PackedScene" uid="uid://di1t6u038ybnr" path="res://Scenes/player.tscn" id="1_37s63"]
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_lwhkp"]
 [ext_resource type="MeshLibrary" uid="uid://c6cgyrgbqq05h" path="res://MeshLibraries/TileMesh.tres" id="2_8mkj7"]
+[ext_resource type="Texture2D" uid="uid://rgrprksnmbgb" path="res://Assets/sky/rogland_clear_night_4k.exr" id="2_iwmkx"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_2dgf4"]
+panorama = ExtResource("2_iwmkx")
+
+[sub_resource type="Sky" id="Sky_n4sao"]
+sky_material = SubResource("PanoramaSkyMaterial_2dgf4")
+
+[sub_resource type="Environment" id="Environment_pnrbw"]
+background_mode = 2
+background_energy_multiplier = 0.5
+sky = SubResource("Sky_n4sao")
+ambient_light_sky_contribution = 0.1
+tonemap_mode = 2
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_lwhkp")
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_pnrbw")
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
-visible = false
 light_energy = 2.099
 shadow_enabled = true
 

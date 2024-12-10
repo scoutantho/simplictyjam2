@@ -5,7 +5,7 @@ const finish = preload("res://Scenes/finish.tscn")
 
 @export var _grid_size := 2000
 @export var _grid_steps := 6 #number of tiles ?
-var wall_height = 4
+var wall_height = 5
 var _isRoofEnable: bool = false
 
 var isRoofEnableEditable = false:
@@ -22,6 +22,12 @@ func set_roof_enable(value):
 		remove_roof()
 
 var tilesAlreadyPresent = [Vector2(0,0),Vector2(-1,0), Vector2(0,-1), Vector2(-1,-1) ]
+
+func _process(_delta):
+	$WorldEnvironment.environment.sky_rotation.y += 0.0001
+	if $WorldEnvironment.environment.sky_rotation.y >= 360:
+		$WorldEnvironment.environment.sky_rotation.y = 0
+	pass
 
 func _ready():
 	setDefaultSpawn()
@@ -83,7 +89,6 @@ func has_minimum_neighbors(pos: Vector2) -> bool:
 
 	# Allow placement
 	return true
-
 
 
 func setDefaultSpawn():
