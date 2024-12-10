@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://di1t6u038ybnr"]
+[gd_scene load_steps=7 format=3 uid="uid://di1t6u038ybnr"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_384ej"]
 [ext_resource type="PackedScene" uid="uid://cr0hj1xs3dqst" path="res://Scenes/baguetteMagique.tscn" id="2_8eucf"]
 [ext_resource type="AudioStream" uid="uid://c1lqakks4rm2y" path="res://Assets/sounds/walking-on-concrete-ver-2-268513.mp3" id="3_psda6"]
+[ext_resource type="AudioStream" uid="uid://cvf56yl6m8sdf" path="res://Assets/sounds/woosh-260275.mp3" id="4_gntfl"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3xo27"]
 
@@ -37,4 +38,12 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.2743
 stream = ExtResource("3_psda6")
 pitch_scale = 1.5
 
+[node name="woosh" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_gntfl")
+
+[node name="soundTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
 [connection signal="timeout" from="ThrowTimer" to="." method="_on_throw_timer_timeout"]
+[connection signal="timeout" from="soundTimer" to="." method="_on_sound_timer_timeout"]

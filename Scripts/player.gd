@@ -31,6 +31,8 @@ func set_throw_timerTime(value):
 @onready var lightPos = $Head/BaguetteMagique/LightPos
 @onready var throwTimer = $ThrowTimer
 @onready var footwork = $footwork
+@onready var woosh = $woosh
+@onready var soundTimer = $soundTimer
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -84,18 +86,9 @@ func _headbob(timer: float) -> Vector3:
 
 func lightThrow():
 	if Input.is_action_just_released("left_click") && canthrow:
-		var light_instance = Light.instantiate()
-		light_instance.position = lightPos.global_position
-		# light_instance.global_transform = lightPos.global_transform
-		# get_parent().add_child(light_instance)
-		# light_instance.lightThrow()
 		canthrow = false
-		throwTimer.start()
-		get_tree().current_scene.add_child(light_instance)
-
-		var playerRotation = head.global_transform.basis.z.normalized()
-
-		light_instance.velocity = playerRotation * throwingForce
+		woosh.play()
+		soundTimer.start()
 
 
 func _on_throw_timer_timeout() -> void:
@@ -108,4 +101,22 @@ func handleWalkingSound(shouldStop = false):
 	else:
 		if not footwork.playing:
 			footwork.play()
+	pass # Replace with function body.
+
+func lightSpawn():
+	var light_instance = Light.instantiate()
+	light_instance.position = lightPos.global_position
+	# light_instance.global_transform = lightPos.global_transform
+	# get_parent().add_child(light_instance)
+	# light_instance.lightThrow()
+	
+	throwTimer.start()
+	get_tree().current_scene.add_child(light_instance)
+
+	var playerRotation = head.global_transform.basis.z.normalized()
+
+	light_instance.velocity = playerRotation * throwingForce
+
+func _on_sound_timer_timeout() -> void:
+	lightSpawn()
 	pass # Replace with function body.

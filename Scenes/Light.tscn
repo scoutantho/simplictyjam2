@@ -6,8 +6,8 @@
 radius = 0.1
 
 [sub_resource type="SphereMesh" id="SphereMesh_gxruw"]
-radius = 0.1
-height = 0.2
+radius = 0.02
+height = 0.04
 
 [node name="RigidBody3D" type="StaticBody3D"]
 collision_layer = 0
