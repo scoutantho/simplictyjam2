@@ -1,8 +1,8 @@
 [gd_scene load_steps=2 format=3 uid="uid://cr0hj1xs3dqst"]
 
-[ext_resource type="PackedScene" uid="uid://crnuur2lvlyxy" path="res://Assets/the_elder_wand.glb" id="1_lxdu1"]
+[ext_resource type="PackedScene" uid="uid://c528hqn0ujxxy" path="res://Assets/the_elder_wand.glb" id="1_lxdu1"]
 
 [node name="BaguetteMagique" type="Node3D"]
 
-[node name="Sketchfab_Scene" parent="." instance=ExtResource("1_lxdu1")]
+[node name="Sketchfab_Scene2" parent="." instance=ExtResource("1_lxdu1")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)

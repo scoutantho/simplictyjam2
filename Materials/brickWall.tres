@@ -1,16 +1,12 @@
 [gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://dwj3xfe4ovm1t"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3o3ks"]
-load_path = "res://.godot/imported/medieval_red_brick_diff_4k.jpg-2c07075c38af0655514e757f5b03e572.s3tc.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_v3r1v"]
-load_path = "res://.godot/imported/medieval_red_brick_ao_4k.jpg-4a85824e4e5ff512282a70dd13a51b69.s3tc.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_dfoav"]
-load_path = "res://.godot/imported/medieval_red_brick_nor_gl_4k.png-820e7a2b3ac6baf7993817d063507a13.s3tc.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_f256d"]
-load_path = "res://.godot/imported/medieval_red_brick_rough_4k.png-e13c71446b1a76e5e93b8884515df54a.s3tc.ctex"
 
 [resource]
 albedo_texture = SubResource("CompressedTexture2D_3o3ks")

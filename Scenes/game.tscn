@@ -3,10 +3,10 @@
 [ext_resource type="PackedScene" uid="uid://di1t6u038ybnr" path="res://Scenes/player.tscn" id="1_37s63"]
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_lwhkp"]
 [ext_resource type="MeshLibrary" uid="uid://c6cgyrgbqq05h" path="res://MeshLibraries/TileMesh.tres" id="2_8mkj7"]
-[ext_resource type="Texture2D" uid="uid://rgrprksnmbgb" path="res://Assets/sky/rogland_clear_night_4k.exr" id="2_iwmkx"]
+[ext_resource type="Texture2D" uid="uid://r3vqlawrwbi4" path="res://Assets/sky/rogland_clear_night_2k.exr" id="2_bnuri"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_2dgf4"]
-panorama = ExtResource("2_iwmkx")
+panorama = ExtResource("2_bnuri")
 
 [sub_resource type="Sky" id="Sky_n4sao"]
 sky_material = SubResource("PanoramaSkyMaterial_2dgf4")

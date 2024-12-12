@@ -2,14 +2,14 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://s15a0oyis8wt"
+uid="uid://k0116ci2yust"
 path.s3tc="res://.godot/imported/the_elder_wand_1.png-ed949d3daf0531e492735018565a80f9.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "34e6a87b2fa7f3f7f171f566dd8ef09a"
+"md5": "2d614403535302dba25632293db826df"
 }
 
 [deps]
