@@ -1,4 +1,4 @@
-extends StaticBody3D
+extends RigidBody3D
 
 var velocity: Vector3 = Vector3.ZERO
 
@@ -9,7 +9,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	global_position += velocity * delta
+	# global_position += velocity * delta
 	pass
 
 
