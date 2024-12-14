@@ -19,6 +19,21 @@ background_mode = 2
 background_energy_multiplier = 0.5
 sky = SubResource("Sky_vb4iq")
 
+[sub_resource type="Animation" id="Animation_nyhs8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DirectionalLight3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.174533, 3.14159, -3.14159)]
+}
+
 [sub_resource type="Animation" id="Animation_ybnj6"]
 resource_name = "dayNightCycle"
 length = 180.0
@@ -36,21 +51,6 @@ tracks/0/keys = {
 "values": [Vector3(-0.0698132, 3.14159, -3.14159), Vector3(-0.0698132, -3.14159, -3.14159)]
 }
 
-[sub_resource type="Animation" id="Animation_nyhs8"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("DirectionalLight3D:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-0.174533, 3.14159, -3.14159)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mkwak"]
 _data = {
 "RESET": SubResource("Animation_nyhs8"),
@@ -63,7 +63,7 @@ _data = {
 environment = SubResource("Environment_8ugd7")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 7.2242e-08, -8.60946e-08, 8.60946e-08, -0.984808, 0.173648, -7.2242e-08, -0.173648, -0.984808, 0, 0, 0)
+transform = Transform3D(1, -2.09495e-06, 2.49667e-06, -2.49667e-06, -0.984808, 0.173648, 2.09495e-06, -0.173648, -0.984808, 0, 0, 0)
 light_color = Color(0.0430392, 0.0430392, 0.0430392, 1)
 light_energy = 0.5
 light_indirect_energy = 0.1
