@@ -5,6 +5,7 @@ var actualGridSteps := 6
 var numberOfLevels := 3
 var actualLevel := 1
 var lightTimer := 3.0
+var throwLightTimer := 1.0
 
 @onready var gameTheme = $"/root/GameManager/gametheme"
 @onready var gameSwap = $"/root/GameManager/gameSwap"
@@ -16,6 +17,8 @@ func newGame():
 	GameManager.actualGridSteps += 20
 	if GameManager.lightTimer < 20:
 		GameManager.lightTimer *= 1.5
+	if GameManager.throwLightTimer < 10:
+		GameManager.throwLightTimer *= 0.5
 
 	# Load the new scene
 	var new_scene = load("res://Scenes/game.tscn") as PackedScene
