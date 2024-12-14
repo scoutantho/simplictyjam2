@@ -24,9 +24,9 @@ func set_roof_enable(value):
 var tilesAlreadyPresent = [Vector2(0,0),Vector2(-1,0), Vector2(0,-1), Vector2(-1,-1) ]
 
 func _process(_delta):
-	$WorldEnvironment.environment.sky_rotation.y += 0.0001
-	if $WorldEnvironment.environment.sky_rotation.y >= 360:
-		$WorldEnvironment.environment.sky_rotation.y = 0
+	# $WorldEnvironment.environment.sky_rotation.y += 0.0001
+	# if $WorldEnvironment.environment.sky_rotation.y >= 360:
+	# 	$WorldEnvironment.environment.sky_rotation.y = 0
 	pass
 
 func _ready():
@@ -219,7 +219,7 @@ func add_starting_lights(player: Node):
 
 	# Set the color to a warm white (slightly yellowish)
 	starting_light.light_color = Color(1.0, 0.9, 0.7)  # Warm white color (RGB)
-
+	starting_light.light_energy = 0.7
 	# Position the light at the player's spawn location
 	starting_light.global_transform.origin = player.global_transform.origin + Vector3(0, 2, 0)  # Adjust the height as needed
 

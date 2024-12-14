@@ -1,0 +1,75 @@
+[gd_scene load_steps=9 format=3 uid="uid://bfas7f3cbhe82"]
+
+[sub_resource type="Gradient" id="Gradient_d4xwi"]
+colors = PackedColorArray(0, 0.00726528, 0.139582, 1, 0.0110876, 0.0110876, 0.0110876, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_opmwd"]
+gradient = SubResource("Gradient_d4xwi")
+fill_from = Vector2(1, 0.542735)
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_tnfbj"]
+sun_disk_scale = 0.0
+night_sky = SubResource("GradientTexture2D_opmwd")
+
+[sub_resource type="Sky" id="Sky_vb4iq"]
+sky_material = SubResource("PhysicalSkyMaterial_tnfbj")
+
+[sub_resource type="Environment" id="Environment_8ugd7"]
+background_mode = 2
+background_energy_multiplier = 0.5
+sky = SubResource("Sky_vb4iq")
+
+[sub_resource type="Animation" id="Animation_ybnj6"]
+resource_name = "dayNightCycle"
+length = 180.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DirectionalLight3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 180),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.0698132, 3.14159, -3.14159), Vector3(-0.0698132, -3.14159, -3.14159)]
+}
+
+[sub_resource type="Animation" id="Animation_nyhs8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DirectionalLight3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.174533, 3.14159, -3.14159)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mkwak"]
+_data = {
+"RESET": SubResource("Animation_nyhs8"),
+"dayNightCycle": SubResource("Animation_ybnj6")
+}
+
+[node name="DayNight" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_8ugd7")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 7.2242e-08, -8.60946e-08, 8.60946e-08, -0.984808, 0.173648, -7.2242e-08, -0.173648, -0.984808, 0, 0, 0)
+light_color = Color(0.0430392, 0.0430392, 0.0430392, 1)
+light_energy = 0.5
+light_indirect_energy = 0.1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_mkwak")
+}
+autoplay = "dayNightCycle"

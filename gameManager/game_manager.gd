@@ -14,7 +14,8 @@ func newGame():
 	GameManager.actualLevel += 1
 	GameManager.actualGridsize += 1000
 	GameManager.actualGridSteps += 20
-	GameManager.lightTimer *= 1.5
+	if GameManager.lightTimer < 20:
+		GameManager.lightTimer *= 1.5
 
 	# Load the new scene
 	var new_scene = load("res://Scenes/game.tscn") as PackedScene
