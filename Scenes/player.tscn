@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://di1t6u038ybnr"]
+[gd_scene load_steps=10 format=3 uid="uid://di1t6u038ybnr"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_384ej"]
 [ext_resource type="PackedScene" uid="uid://cr0hj1xs3dqst" path="res://Scenes/baguetteMagique.tscn" id="2_8eucf"]
@@ -8,6 +8,67 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3xo27"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_qkiis"]
+
+[sub_resource type="Animation" id="Animation_rd4yr"]
+resource_name = "throw"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.274331, -0.39628, -0.693077), Vector3(0.274, -0.419, -0.693), Vector3(0.274331, -0.39628, -0.693077)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 1.5708, 0), Vector3(0, 1.5708, -0.0523599), Vector3(0, 1.5708, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_51mqg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.274331, -0.39628, -0.693077)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.5708, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t0g1n"]
+_data = {
+"RESET": SubResource("Animation_51mqg"),
+"throw": SubResource("Animation_rd4yr")
+}
 
 [node name="CharacterBody3D" type="CharacterBody3D" groups=["Player"]]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 1, 0)
@@ -32,6 +93,11 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.2743
 
 [node name="LightPos" type="Marker3D" parent="Head/Camera/BaguetteMagique"]
 unique_name_in_owner = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Head/Camera/BaguetteMagique"]
+libraries = {
+"": SubResource("AnimationLibrary_t0g1n")
+}
 
 [node name="ThrowTimer" type="Timer" parent="."]
 wait_time = 1.5

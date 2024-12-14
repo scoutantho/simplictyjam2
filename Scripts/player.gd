@@ -121,7 +121,7 @@ func lightSpawn():
 	# Start the timer for cooldown
 	# if throwTimer.wait_time < 7:
 	throwTimer.wait_time = GameManager.throwLightTimer
-	# baguette.get_node("AnimationPlayer").play("throwLightAnimation")
+	baguette.get_node("AnimationPlayer").play("throw")
 	throwTimer.start()
 
 func _on_sound_timer_timeout() -> void:
