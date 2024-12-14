@@ -64,7 +64,7 @@ func has_minimum_neighbors(pos: Vector2) -> bool:
 
 	# Relaxed check: Allow placement with 1 orthogonal neighbor in early stages
 	if orthogonal_neighbors.size() == 0:
-		print("Rejected:", pos, "Reason: No orthogonal neighbors.")
+		# print("Rejected:", pos, "Reason: No orthogonal neighbors.")
 		return false
 
 	# Restrict diagonal connections: Each diagonal must share an orthogonal with `pos`
@@ -75,7 +75,7 @@ func has_minimum_neighbors(pos: Vector2) -> bool:
 				shared_orthogonal = true
 				break
 		if not shared_orthogonal:
-			print("Rejected:", pos, "Reason: Diagonal neighbor without shared orthogonal.")
+			# print("Rejected:", pos, "Reason: Diagonal neighbor without shared orthogonal.")
 			return false
 
 	# Prevent narrow corridors by disallowing exactly 2 orthogonal neighbors opposite each other
@@ -84,7 +84,7 @@ func has_minimum_neighbors(pos: Vector2) -> bool:
 		for ortho in orthogonal_neighbors:
 			directions.append(ortho - pos)
 		if directions[0] + directions[1] == Vector2(0, 0):  # Opposite neighbors
-			print("Rejected:", pos, "Reason: Linear corridor.")
+			# print("Rejected:", pos, "Reason: Linear corridor.")
 			return false
 
 	# Allow placement
@@ -138,7 +138,7 @@ func add_finish():
 	# Select a random tile from the furthest tiles
 	if furthest_tiles.size() > 0:
 		var finish_tile = furthest_tiles[randi() % furthest_tiles.size()]
-		print("Finish line placed at:", finish_tile)
+		# print("Finish line placed at:", finish_tile)
 
 		# Add the finish line (use your preferred method to represent it)
 		$GridMap.set_cell_item(Vector3i(int(finish_tile.x), 0, int(finish_tile.y)), -1, 0)
@@ -147,8 +147,8 @@ func add_finish():
 		add_child(_finish)
 		
 		_finish.position = Vector3(finish_tile.x + 0.5, 0.5, finish_tile.y + 0.5)
-	else:
-		print("No tiles available for placing the finish line!")
+	# else:
+		# print("No tiles available for placing the finish line!")
 
 func generateMaze(grid_steps: int = 6, grid_size: int = 2000):
 	var current_pos = Vector2(0, 0)
@@ -157,7 +157,7 @@ func generateMaze(grid_steps: int = 6, grid_size: int = 2000):
 
 	for i in range(grid_steps):
 		if position_stack.is_empty():
-			print("No more positions to backtrack to!")
+			# print("No more positions to backtrack to!")
 			break
 
 		current_pos = position_stack[-1]  # Get the last position from the stack
@@ -209,7 +209,7 @@ func generateMaze(grid_steps: int = 6, grid_size: int = 2000):
 			$GridMap.set_cell_item(Vector3i(int(second_tile.x), 0, int(second_tile.y)), 0, 0)
 		
 		else:
-			print("No valid direction found from", current_pos)
+			# print("No valid direction found from", current_pos)
 			position_stack.pop_back()  # Backtrack to the previous position
 
 func add_starting_lights(player: Node):
@@ -226,4 +226,4 @@ func add_starting_lights(player: Node):
 	# Optionally, set the light to be static if it doesn't move (for performance reasons)
 	starting_light.light_bake_mode = Light3D.BAKE_STATIC  # For static lighting, use MODE_BAKED (optional, adjust based on need)
 	
-	print("Starting light added at player spawn position:", starting_light.global_transform.origin)
+	# print("Starting light added at player spawn position:", starting_light.global_transform.origin)

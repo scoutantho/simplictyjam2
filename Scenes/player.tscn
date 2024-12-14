@@ -34,6 +34,7 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.2743
 unique_name_in_owner = true
 
 [node name="ThrowTimer" type="Timer" parent="."]
+wait_time = 1.5
 
 [node name="footwork" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_psda6")

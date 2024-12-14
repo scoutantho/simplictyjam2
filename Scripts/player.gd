@@ -13,7 +13,6 @@ var bob_timer := 0.0
 #light variables
 var Light = preload("res://Scenes/Light.tscn")
 var throwingForce = -3
-var lightIntesity = 10
 var canthrow = true
 
 var throwTimerTime = 1.0:
@@ -120,6 +119,7 @@ func lightSpawn():
 	get_tree().current_scene.add_child(light_instance)
 	light_instance.apply_central_impulse(throw_direction * throwingForce)
 	# Start the timer for cooldown
+	throwTimer.wait_time *= 1.3
 	throwTimer.start()
 
 func _on_sound_timer_timeout() -> void:

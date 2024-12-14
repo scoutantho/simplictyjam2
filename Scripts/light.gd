@@ -4,6 +4,9 @@ var velocity: Vector3 = Vector3.ZERO
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	$RemoveTimer.wait_time = GameManager.lightTimer
+	print("light timer: ", GameManager.lightTimer)
+	$RemoveTimer.start()
 	pass # Replace with function body.
 
 

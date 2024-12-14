@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/light.gd" id="1_ffxvv"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_aa45d"]
+friction = 0.0
 bounce = 1.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_v6k4o"]
@@ -35,6 +36,5 @@ omni_range = 3.92
 
 [node name="RemoveTimer" type="Timer" parent="."]
 wait_time = 3.0
-autostart = true
 
 [connection signal="timeout" from="RemoveTimer" to="." method="_on_timer_timeout"]
