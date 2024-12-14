@@ -107,6 +107,7 @@ func lightSpawn():
 	var light_instance = Light.instantiate() as RigidBody3D
 	# Set the light's position to the lightPos node's position
 	# light_instance.position = lightPos.global_position
+	get_tree().current_scene.add_child(light_instance)
 	light_instance.global_transform.origin = lightPos.global_transform.origin
 
 	# Align the light's direction with the camera's direction (or wand/head if needed)
@@ -116,7 +117,6 @@ func lightSpawn():
 	light_instance.velocity = throw_direction * throwingForce
 
 	# Add the light to the current scene
-	get_tree().current_scene.add_child(light_instance)
 	light_instance.apply_central_impulse(throw_direction * throwingForce)
 	# Start the timer for cooldown
 	# if throwTimer.wait_time < 7:
