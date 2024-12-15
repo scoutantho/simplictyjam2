@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://di1t6u038ybnr"]
+[gd_scene load_steps=11 format=3 uid="uid://di1t6u038ybnr"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_384ej"]
 [ext_resource type="PackedScene" uid="uid://cr0hj1xs3dqst" path="res://Scenes/baguetteMagique.tscn" id="2_8eucf"]
@@ -64,10 +64,40 @@ tracks/1/keys = {
 "values": [Vector3(0, 1.5708, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_k5ibw"]
+resource_name = "walking"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.274331, -0.39628, -0.693077), Vector3(0.273, -0.375, -0.667), Vector3(0.254, -0.383, -0.656), Vector3(0.276, -0.365, -0.672), Vector3(0.274331, -0.39628, -0.693077)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 1.5708, 0), Vector3(0, 1.5708, 0.015708), Vector3(0, 1.5708, -0.0349066), Vector3(-0.0628319, 1.53414, -0.0802851), Vector3(0, 1.5708, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_t0g1n"]
 _data = {
 "RESET": SubResource("Animation_51mqg"),
-"throw": SubResource("Animation_rd4yr")
+"throw": SubResource("Animation_rd4yr"),
+"walking": SubResource("Animation_k5ibw")
 }
 
 [node name="CharacterBody3D" type="CharacterBody3D" groups=["Player"]]

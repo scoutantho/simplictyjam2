@@ -63,10 +63,12 @@ func _physics_process(delta: float) -> void:
 	var direction: Vector3 = (head.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
 		handleWalkingSound()
+		handleWandAnimationWalking()
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
 	else:
 		handleWalkingSound(true)
+		handleWandAnimationWalking(true)
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
@@ -101,6 +103,14 @@ func handleWalkingSound(shouldStop = false):
 	else:
 		if not footwork.playing:
 			footwork.play()
+	pass # Replace with function body.
+
+func handleWandAnimationWalking(shouldStop = false):
+	if shouldStop:
+		baguette.get_node("AnimationPlayer").stop()
+	else:
+		if not baguette.get_node("AnimationPlayer").is_playing():
+			baguette.get_node("AnimationPlayer").play("walking")
 	pass # Replace with function body.
 
 func lightSpawn():	
