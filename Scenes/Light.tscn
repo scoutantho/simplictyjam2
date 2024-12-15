@@ -1,6 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://d3vg3eb8pobf6"]
+[gd_scene load_steps=11 format=3 uid="uid://d3vg3eb8pobf6"]
 
 [ext_resource type="Script" path="res://Scripts/light.gd" id="1_ffxvv"]
+[ext_resource type="Texture2D" uid="uid://cjoy1mbqjpujs" path="res://Assets/corrugatedIron/corrugated_iron_diff_1k.png" id="2_r5a1y"]
+[ext_resource type="Texture2D" uid="uid://d3lryb4qg7kvm" path="res://Assets/corrugatedIron/corrugated_iron_ao_1k.png" id="3_eveig"]
+[ext_resource type="Texture2D" uid="uid://dq6sge4hg08gp" path="res://Assets/corrugatedIron/corrugated_iron_metal_1k.png" id="4_3546i"]
+[ext_resource type="Texture2D" uid="uid://ceua5q8cyy563" path="res://Assets/corrugatedIron/corrugated_iron_nor_gl_1k.png" id="5_gcanc"]
+[ext_resource type="Texture2D" uid="uid://vw0ypjn7k5br" path="res://Assets/corrugatedIron/corrugated_iron_rough_1k.png" id="6_r6h11"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_aa45d"]
 friction = 0.0
@@ -9,7 +14,20 @@ bounce = 1.0
 [sub_resource type="SphereShape3D" id="SphereShape3D_v6k4o"]
 radius = 0.1
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6wtfw"]
+albedo_color = Color(0.8438, 0.743779, 0.641662, 1)
+albedo_texture = ExtResource("2_r5a1y")
+metallic = 1.0
+metallic_texture = ExtResource("4_3546i")
+roughness_texture = ExtResource("6_r6h11")
+normal_enabled = true
+normal_texture = ExtResource("5_gcanc")
+ao_enabled = true
+ao_texture = ExtResource("3_eveig")
+uv1_scale = Vector3(3, 3, 3)
+
 [sub_resource type="SphereMesh" id="SphereMesh_gxruw"]
+material = SubResource("StandardMaterial3D_6wtfw")
 radius = 0.02
 height = 0.04
 
