@@ -18,7 +18,7 @@ func newGame():
 	if GameManager.lightTimer < 20:
 		GameManager.lightTimer *= 1.5
 	if GameManager.throwLightTimer < 10:
-		GameManager.throwLightTimer *= 0.5
+		GameManager.throwLightTimer *= 1.1
 
 	# Load the new scene
 	var new_scene = load("res://Scenes/game.tscn") as PackedScene
