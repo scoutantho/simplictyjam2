@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dq12e6a66p8wl"]
+[gd_scene load_steps=5 format=3 uid="uid://dq12e6a66p8wl"]
 
 [ext_resource type="Script" path="res://gameManager/game_manager.gd" id="1_xs5ow"]
 [ext_resource type="AudioStream" uid="uid://2r2ixds35uyt" path="res://Assets/sounds/gregori_1_M.mp3" id="2_4dmr1"]
 [ext_resource type="AudioStream" uid="uid://cscewhr6ypkwg" path="res://Assets/sounds/magic_transition.mp3" id="3_g5hs4"]
+[ext_resource type="PackedScene" uid="uid://ca3o4c4ca5ivj" path="res://Scenes/display.tscn" id="4_m1lvk"]
 
 [node name="GameManager" type="Node3D"]
 script = ExtResource("1_xs5ow")
@@ -19,5 +20,7 @@ volume_db = -16.421
 [node name="gameSwapTimer" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
+
+[node name="control" parent="." instance=ExtResource("4_m1lvk")]
 
 [connection signal="timeout" from="gameSwapTimer" to="." method="_on_game_swap_timer_timeout"]
